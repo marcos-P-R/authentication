@@ -18,6 +18,11 @@ public class UsuarioController {
         this.usuarioRepository = usuarioRepository;
     }
 
+    @GetMapping("/form")
+    public String formulario(){
+        return "Formulario";
+    }
+
     @GetMapping
     public List<Usuario> getAllUser(){
         return usuarioRepository.findAll();
@@ -36,6 +41,7 @@ public class UsuarioController {
         return usuarioRepository.save(usuario);
     }
 
+    @PutMapping("/{id}")
     public ResponseEntity<Usuario> updateUser(@PathVariable Long id, @RequestBody Usuario user){
         return usuarioRepository.findById(id)
                 .map(userUpdate -> {
